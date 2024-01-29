@@ -14,17 +14,17 @@ export class ProductsListComponent {
     {
       nombre: 'Producto 1',
       precio: 20.19,
-      descripcion: 'Descripción del Producto 1'
+      descripcion: 'Animales'
     },
     {
       nombre: 'Producto 2',
       precio: 30.00,
-      descripcion: 'Descripción del Producto 1'
+      descripcion: 'Animales'
     },
     {
       nombre: 'Producto 3',
       precio: 11.19,
-      descripcion: 'Descripción del Producto 1'
+      descripcion: 'Animales'
     },
  ]
 }

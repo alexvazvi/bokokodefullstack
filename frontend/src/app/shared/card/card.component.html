@@ -1,5 +1,5 @@
 <!-- card.component.html -->
-<div class="border rounded shadow-md overflow-hidden card-container relative" 
+<div class="border overflow-hidden card-container relative" 
      (mouseenter)="showAddToCartBox = true" 
      (mouseleave)="showAddToCartBox = false">
      <div class="relative">
@@ -11,8 +11,8 @@
             }
      </div>
   <div class="p-4">
-    <h2 class="text-xl font-bold mb-2">{{ nombre }}</h2>
-    <p class="text-gray-700 mb-4">{{ descripcion }}</p>
-    <p class="text-green-600 font-bold mb-4">${{ precio.toFixed(2) }}</p>
+    <p class="text-gray-500 font-bold">{{ categoria }}</p>
+    <h2 class="font-bold">{{ nombre }}</h2>
+    <p class="text-gray-500">${{ precio.toFixed(2) }}</p>
   </div>
 </div>

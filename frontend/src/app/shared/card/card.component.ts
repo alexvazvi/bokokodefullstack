@@ -12,5 +12,5 @@ export class CardComponent {
   showAddToCartBox: boolean = false;
   @Input() nombre: string = '';
   @Input() precio: number = 0;
-  @Input() descripcion: string = '';
+  @Input() categoria: string = '';
 }
