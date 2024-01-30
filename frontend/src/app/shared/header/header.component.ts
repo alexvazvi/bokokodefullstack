@@ -20,6 +20,8 @@ export class HeaderComponent {
     this.cartService.cartEmitter.subscribe((updatedCart: Product[]) => {
       this.cart = updatedCart;
     });
-
+  }
+  clearCart(): void{
+      this.cart = [];
   }
 }
