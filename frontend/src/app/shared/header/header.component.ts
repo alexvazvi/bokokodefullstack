@@ -12,6 +12,7 @@ import { Product } from '../../interfaces/product';
 export class HeaderComponent {
 
   cart: Product[] = [];
+  cartIsHidden: boolean = true;
 
   constructor(private cartService: CartService) {}
   
@@ -23,5 +24,9 @@ export class HeaderComponent {
   }
   clearCart(): void{
       this.cart = [];
+  }
+
+  toggleVisibilityCart(): void {
+    this.cartIsHidden = !this.cartIsHidden;
   }
 }

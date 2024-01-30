@@ -3,7 +3,8 @@
     <div>
       <a routerLink="/" class="text-lg font-bold">Bejamas_</a>
     </div>
-    <div class="flex items-center">
+    <div class="flex items-center cursor-pointer" (click)="toggleVisibilityCart()"
+    >
       <div
         class="bg-black h-4 w-4 text-white flex items-center justify-center mr-4 text-xs"
       >
@@ -27,8 +28,9 @@
 </header>
 
 <!-- Sub total  https://tailwindcomponents.com/component/shopping-cart-responsive -->
-
-<div class="mt-6 h-full border-2 bg-white p-6 md:w-1/3">
+@if (!cartIsHidden) {
+<div class="mt-6 h-full border-2 bg-white p-6 md:w-1/3 ml-auto">
+  <div class="cursor-pointer text-right font-bold mr-2" (click)="toggleVisibilityCart()">X</div>
   <div class="mb-2">
     @for (product of cart; track product) {
     <div class="mb-2 grid grid-cols-2 items-center gap-4">
@@ -45,7 +47,9 @@
   </div>
   <button
     class="w-full bg-white py-1.5 font-medium text-black border-2 border-black"
-  (click)="clearCart()">
+    (click)="clearCart()"
+  >
     Clear
   </button>
 </div>
+}
