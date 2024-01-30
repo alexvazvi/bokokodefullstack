@@ -2,17 +2,17 @@
 <div class="border overflow-hidden card-container relative" 
      (mouseenter)="showAddToCartBox = true" 
      (mouseleave)="showAddToCartBox = false">
-     <div class="relative">
+     <div class="relative" (click)="addToCart()">
         <img class="w-full h-auto" src="assets/perro.jpg" alt="Card Image">
         @if (showAddToCartBox) {
             <div class="absolute bottom-0 left-0 w-full bg-white text-center p-2 opacity-90">
-                ADD TO CART
+                <span>ADD TO CART</span>
             </div>
             }
      </div>
   <div class="p-4">
-    <p class="text-gray-500 font-bold">{{ categoria }}</p>
-    <h2 class="font-bold">{{ nombre }}</h2>
-    <p class="text-gray-500">${{ precio.toFixed(2) }}</p>
+    <p class="text-gray-500 font-bold">{{ category }}</p>
+    <h2 class="font-bold">{{ name }}</h2>
+    <p class="text-gray-500">${{ price.toFixed(2) }}</p>
   </div>
 </div>

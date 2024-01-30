@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CartService } from '../../services/cart.service';
+import { Product } from '../../interfaces/product';
 
 @Component({
   selector: 'app-header',
@@ -9,4 +11,15 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  cart: Product[] = [];
+
+  constructor(private cartService: CartService) {}
+  
+  ngOnInit(): void {
+    // Subscripcion para actualizar el carrito
+    this.cartService.cartEmitter.subscribe((updatedCart: Product[]) => {
+      this.cart = updatedCart;
+    });
+
+  }
 }

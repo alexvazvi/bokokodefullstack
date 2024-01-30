@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CardComponent } from '../../shared/card/card.component';
+import { CartService } from '../../services/cart.service';
+import { Product } from '../../interfaces/product';
 
 @Component({
   selector: 'app-products-list',
@@ -9,22 +11,24 @@ import { CardComponent } from '../../shared/card/card.component';
   styleUrl: './products-list.component.scss'
 })
 export class ProductsListComponent {
-
-  products = [
+  
+  products: Product[] = [
     {
-      nombre: 'Producto 1',
-      precio: 20.19,
-      descripcion: 'Animales'
+      name: 'Producto 1',
+      price: 20.19,
+      category: 'Animales'
     },
     {
-      nombre: 'Producto 2',
-      precio: 30.00,
-      descripcion: 'Animales'
+      name: 'Producto 2',
+      price: 30.00,
+      category: 'Animales'
     },
     {
-      nombre: 'Producto 3',
-      precio: 11.19,
-      descripcion: 'Animales'
+      name: 'Producto 3',
+      price: 11.19,
+      category: 'Animales'
     },
  ]
+
+
 }

@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { CartService } from '../../services/cart.service';
+import { Product } from '../../interfaces/product';
 
 
 @Component({
@@ -9,8 +11,15 @@ import { Component, Input } from '@angular/core';
   styleUrl: './card.component.scss'
 })
 export class CardComponent {
+  @Input() name: string = '';
+  @Input() price: number = 0;
+  @Input() category: string = '';
   showAddToCartBox: boolean = false;
-  @Input() nombre: string = '';
-  @Input() precio: number = 0;
-  @Input() categoria: string = '';
+
+  constructor(private cartService: CartService) {}
+
+  addToCart(): void {
+    const product: Product = { name: this.name, price: this.price, category: this.category };
+    this.cartService.addToCart(product);
+  }
 }
