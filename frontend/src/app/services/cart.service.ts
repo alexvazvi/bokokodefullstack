@@ -13,7 +13,7 @@ export class CartService {
     this.cart.push(product);
     this.saveCartToLocalStorage();
     //En caso de hacerlo con emisores
-    //this.cartEmitter.emit(this.cart);
+    this.cartEmitter.emit(this.cart);
   }
 
   getCart(): Product[] {
