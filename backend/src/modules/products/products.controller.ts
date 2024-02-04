@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { Product } from '@prisma/client';
 
@@ -7,12 +7,12 @@ export class ProductsController {
     constructor(private productService: ProductsService) {}
     
     @Get()
-    async getAllProducts(){
-        return this.productService.getAllProducts();
-    }
+    async getAllProducts(@Query('category') category?: string, @Query('orderBy') orderBy?: string) {
+        return this.productService.getAllProducts(category, orderBy);
+      }
 
     @Get(':id')
-    async getProductById(@Param() id: String){
+    async getProductById(@Param('id') id: string){
         return this.productService.getProductById(Number(id));
     }
 
@@ -22,12 +22,12 @@ export class ProductsController {
     }
 
     @Put(':id')
-    async updateProduct(@Param() id: String, @Body() product: Product){
+    async updateProduct(@Param('id') id: string, @Body() product: Product){
         return this.productService.updateProduct(Number(id), product);
     }
 
     @Delete(':id')
-    async deleteProduct(@Param() id: String){
+    async deleteProduct(@Param('id') id: string){
         return this.productService.deleteProduct(Number(id));
     }
 }

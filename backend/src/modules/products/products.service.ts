@@ -4,11 +4,19 @@ import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class ProductsService {
+  private categoryType: string[] = ["people", "food", "landmarks", "pets", "premium", "cities", "nature"]
+  private OrderByValues: string[] = ['price', 'name', 'category'];
+
+  
   constructor(private prismaService: PrismaService) {}
 
-  getAllProducts(): Promise<Product[]> {
-    return this.prismaService.product.findMany();
+  getAllProducts(category?: string, orderBy?: string): Promise<Product[]> {
+    return this.prismaService.product.findMany({
+      where: category ? { category: { in: this.categoryType } } : {},
+      orderBy: orderBy && this.OrderByValues.includes(orderBy) ? { [orderBy]: 'desc' } : {},
+    });
   }
+
   getProductById(id: number): Promise<Product> {
     return this.prismaService.product.findUnique({
       where: {

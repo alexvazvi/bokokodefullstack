@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CardComponent } from '../../shared/card/card.component';
 import { CartService } from '../../services/cart.service';
 import { Product } from '../../interfaces/product';
+import { ProductService } from '../../services/product.service';
+import { firstValueFrom } from 'rxjs';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-products-list',
@@ -10,25 +13,19 @@ import { Product } from '../../interfaces/product';
   templateUrl: './products-list.component.html',
   styleUrl: './products-list.component.scss'
 })
-export class ProductsListComponent {
-  
-  products: Product[] = [
-    {
-      name: 'Producto 1',
-      price: 20.19,
-      category: 'Animales'
-    },
-    {
-      name: 'Producto 2',
-      price: 30.00,
-      category: 'Animales'
-    },
-    {
-      name: 'Producto 3',
-      price: 11.19,
-      category: 'Animales'
-    },
- ]
+export class ProductsListComponent implements OnInit {
+  products: Product[] = [];
 
+  constructor(private productService: ProductService) {}
 
+  ngOnInit() {
+    this.loadProducts();
+  }
+
+  loadProducts() {
+    this.productService.getProducts().subscribe((data) => {
+      this.products = data;
+    });
+  }
 }
+
