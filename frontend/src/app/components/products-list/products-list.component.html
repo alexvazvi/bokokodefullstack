@@ -2,50 +2,66 @@
   <h2 class="text-3xl font-bold p-4">Photography / Premium Photos</h2>
   <div class="grid grid-cols-2 gap-4">
     <div>
-        <h3 class="font-bold mb-4">Category</h3>
-        <div>
-            <input type="checkbox" name="people" id="people" (click)="loadProducts(people.checked ? 'people' : '')" #people>
-            <span>People</span>
-          </div>
-        <div>
-            <input type="checkbox" name="premium" id="premium">
-            <span>Premium</span>
-
-        </div>
-        <div>
-            <input type="checkbox" name="pets" id="pets">
-            <span>Pets</span>
-
-        </div>
-        <div>
-            <input type="checkbox" name="food" id="food">
-            <span>Food</span>
-        </div>
-        <div>
-            <input type="checkbox" name="landmarks" id="landmarks">
-            <span>People</span>
-
-        </div>
-        <div>
-            <input type="checkbox" name="cities" id="cities">
-            <span>Cities</span>
-
-        </div>
-        <div>
-            <input type="checkbox" name="nature" id="nature">
-            <span>Nature</span>
-
-        </div>
+      <h3 class="font-bold mb-4">Category</h3>
+      <div>
+        <input
+          type="checkbox"
+          name="people"
+          id="people"
+          (click)="loadProducts(people.checked ? 'people' : '')"
+          #people
+        />
+        <span>People</span>
+      </div>
+      <div>
+        <input type="checkbox" name="premium" id="premium" />
+        <span>Premium</span>
+      </div>
+      <div>
+        <input type="checkbox" name="pets" id="pets" />
+        <span>Pets</span>
+      </div>
+      <div>
+        <input type="checkbox" name="food" id="food" />
+        <span>Food</span>
+      </div>
+      <div>
+        <input type="checkbox" name="landmarks" id="landmarks" />
+        <span>People</span>
+      </div>
+      <div>
+        <input type="checkbox" name="cities" id="cities" />
+        <span>Cities</span>
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          name="Nature"
+          id="Nature"
+          (click)="loadProducts(Nature.checked ? 'Nature' : '')"
+          #Nature
+        />
+        <span>Nature</span>
+      </div>
+      <div>
+        <input
+          type="checkbox"
+          name="Category A"
+          id="Category A"
+          (click)="loadProducts(CategoryA.checked ? 'Category A' : '')"
+          #CategoryA
+        />
+        <span>Category A</span>
+      </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        @for (product of products; track product) {
-        <app-card
-          [name]="product.name"
-          [price]="product.price"
-          [category]="product.category"
-        ></app-card>
-        }
+      @for (product of products; track product) {
+      <app-card
+        [name]="product.name"
+        [price]="product.price"
+        [category]="product.category"
+      ></app-card>
+      }
     </div>
-</div>
-  
+  </div>
 </div>
