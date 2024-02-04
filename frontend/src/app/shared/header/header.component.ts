@@ -22,8 +22,8 @@ export class HeaderComponent {
       this.cart = updatedCart;
     });
   }
-  clearCart(): void{
-      this.cart = [];
+  clearCart(): void {
+      this.cart = this.cartService.clearCart();
   }
 
   toggleVisibilityCart(): void {

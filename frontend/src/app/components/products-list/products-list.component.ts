@@ -22,10 +22,12 @@ export class ProductsListComponent implements OnInit {
     this.loadProducts();
   }
 
-  loadProducts() {
-    this.productService.getProducts().subscribe((data) => {
+  loadProducts(category?: string, orderByParam?: string, orderByDirection?: string) {
+    this.productService.getProducts(category, orderByParam, orderByDirection).subscribe((data) => {
       this.products = data;
     });
   }
+
+
 }
 

@@ -27,11 +27,14 @@
   </div>
 </header>
 
-<!-- Sub total  https://tailwindcomponents.com/component/shopping-cart-responsive -->
 @if (!cartIsHidden) {
-<div class="mt-6 h-full border-2 bg-white p-6 md:w-1/3 ml-auto">
-  <div class="cursor-pointer text-right font-bold mr-2" (click)="toggleVisibilityCart()">X</div>
+  <div class="fixed top-10 right-10 z-50 bg-white border-2 p-6 md:w-1/3">
+    <div class="cursor-pointer text-right font-bold mr-2" (click)="toggleVisibilityCart()">X</div>
   <div class="mb-2">
+    @if (cart.length === 0){
+        <p class="text-center text-gray-500 p-3">The cart is empty.</p>
+    }
+    @else{
     @for (product of cart; track product) {
     <div class="mb-2 grid grid-cols-2 items-center gap-4">
       <div class="text-center">
@@ -44,10 +47,13 @@
     </div>
     <hr class="my-4" />
     }
+  }
   </div>
   <button
-    class="w-full bg-white py-1.5 font-medium text-black border-2 border-black"
+    class="w-full bg-white py-1.5 font-medium text-black border-2 border-black disabled:opacity-40"
     (click)="clearCart()"
+    [disabled]="cart.length === 0"
+
   >
     Clear
   </button>

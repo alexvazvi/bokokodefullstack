@@ -19,6 +19,10 @@ export class CartService {
   getCart(): Product[] {
     return this.cart;
   }
+  clearCart(): Product[]{
+    this.cart = [];
+    return this.cart;
+  }
 
   private saveCartToLocalStorage(): void {
     localStorage.setItem('cart', JSON.stringify(this.cart));

@@ -4,9 +4,9 @@
     <div>
         <h3 class="font-bold mb-4">Category</h3>
         <div>
-            <input type="checkbox" name="people" id="people">
+            <input type="checkbox" name="people" id="people" (click)="loadProducts(people.checked ? 'people' : '')" #people>
             <span>People</span>
-        </div>
+          </div>
         <div>
             <input type="checkbox" name="premium" id="premium">
             <span>Premium</span>
