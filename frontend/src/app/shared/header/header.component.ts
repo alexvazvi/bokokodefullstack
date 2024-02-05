@@ -20,6 +20,7 @@ export class HeaderComponent {
     // Subscripcion para actualizar el carrito
     this.cartService.cartEmitter.subscribe((updatedCart: Product[]) => {
       this.cart = updatedCart;
+      this.cartIsHidden = false;
     });
   }
   clearCart(): void {
