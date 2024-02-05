@@ -15,6 +15,7 @@ export class CardComponent {
   @Input() price: number = 0;
   @Input() category: string = '';
   @Input() image: string = '';
+  @Input() bestSeller: boolean = false;
 
   showAddToCartBox: boolean = false;
 

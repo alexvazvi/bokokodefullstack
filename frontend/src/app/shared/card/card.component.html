@@ -3,8 +3,13 @@
      (mouseleave)="showAddToCartBox = false">
   <div class="relative" (click)="addToCart()">
     <img class="w-auto h-40 object-cover object-center" src="{{image}}" alt="Card Image">
+    @if (bestSeller) {
+    <div class="absolute top-0 left-0 bg-white text-center text-black">
+      <p class="text-sm">Best Seller</p>
+    </div>
+  }
     @if (showAddToCartBox) {
-      <div class="cursor-pointer absolute bottom-0 left-0 bg-white text-center p-2 opacity-90">
+      <div class="cursor-pointer size absolute bottom-0 left-0 bg-white text-center p-2 opacity-90">
         <span class="">ADD TO CART</span>
       </div>
     }
