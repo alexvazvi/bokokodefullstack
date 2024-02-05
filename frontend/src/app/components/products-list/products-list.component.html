@@ -6,7 +6,7 @@
     </h2>
     <div class="flex items-center">
       <span>⇅</span>
-      <span class="text-gray-400"> Sort By </span>
+      <span class="text-gray-400 ml-1 mr-2"> Sort By </span>
     <select (change)="onOrderByChange($event)">
         @for(val of orderByValues; track val) {
         <option [value]="val">{{ val }}</option>
