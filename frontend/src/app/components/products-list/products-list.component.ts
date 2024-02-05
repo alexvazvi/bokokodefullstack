@@ -47,7 +47,8 @@ export class ProductsListComponent implements OnInit {
     const categoriesToFilter = this.categories.filter(cat => cat.checked).map(cat => cat.name).join(',');
 
     this.productService.getProducts(categoriesToFilter).subscribe((data) => {
-      this.products = data;
+      //Coger desde el segundo elemento del array
+      this.products = data.slice(1);
     });
   }
 

@@ -14,12 +14,22 @@ export class CardComponent {
   @Input() name: string = '';
   @Input() price: number = 0;
   @Input() category: string = '';
+  @Input() image: string = '';
+
   showAddToCartBox: boolean = false;
 
   constructor(private cartService: CartService) {}
 
   addToCart(): void {
-    const product: Product = { name: this.name, price: this.price, category: this.category };
+    const product: Product = {
+      name: this.name, price: this.price, category: this.category,
+      id: 0,
+      currency: '',
+      bestseller: false,
+      featured: false,
+      description: '',
+      image: '',
+    };
     this.cartService.addToCart(product);
   }
 }

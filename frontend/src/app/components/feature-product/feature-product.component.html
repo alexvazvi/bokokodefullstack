@@ -4,7 +4,7 @@
     <button class="bg-black text-white px-4 py-2" (click)="addToCart(product)">ADD TO CART</button>
   </div>
   <div class="relative">
-    <img class="mt-4 mb-8" src="assets/perro.jpg" alt="Samurai King Resting" />
+    <img class="mt-4 mb-8" src="{{product.image}}" alt="Samurai King Resting" />
     <div class="absolute bottom-0 left-0 bg-white text-black p-2">
       <p class="text-sm">Photo of the day</p>
     </div>
@@ -14,33 +14,31 @@
       <h4 class="text-xl font-bold mb-2">About the {{product.name}}</h4>
       <h5 class="text-lg font-semibold mb-2">{{product.category}}</h5>
       <p class="text-gray-700 mb-4">
-        So how did the classical Latin become so incoherent? According to
-        McClintock, a 15th century typesetter likely scrambled part of Cicero's
-        De Finibus in order to provide placeholder text to mockup various fonts
-        for a type specimen book.So how did the classical Latin become so
-        incoherent? According to McClintock, a 15th century typesetter likely
-        scrambled part of Cicero's De Finibus in order to provide placeholder.
-        text to mockup various fonts for a type specimen book.So how did the
-        classical Latin become so incoherent? According to McClintock.
+        {{product.description}}
       </p>
     </div>
     <div>
       <h4 class="text-xl font-bold mb-2">People also buy</h4>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <app-card
-          [name]="'Producto 1'"
+          [name]="'Solomillo 1'"
           [price]="29.99"
-          [category]="'Animales'"
+          [category]="'Food'"
+          [image]="product.image"
         ></app-card>
         <app-card
-          [name]="'Producto 2'"
+          [name]="'Solomillo 2'"
           [price]="39.99"
-          [category]="'Animales'"
+          [category]="'Food'"
+          [image]="product.image"
+
         ></app-card>
         <app-card
-          [name]="'Producto 3'"
+          [name]="'Solomillo 3'"
           [price]="49.99"
-          [category]="'Animales'"
+          [category]="'Food'"
+          [image]="product.image"
+
         ></app-card>
       </div>
     </div>

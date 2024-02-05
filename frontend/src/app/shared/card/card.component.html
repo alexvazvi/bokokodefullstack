@@ -1,15 +1,14 @@
-<!-- card.component.html -->
 <div class="border overflow-hidden card-container relative" 
      (mouseenter)="showAddToCartBox = true" 
      (mouseleave)="showAddToCartBox = false">
-     <div class="relative" (click)="addToCart()">
-        <img class="w-full h-auto" src="assets/perro.jpg" alt="Card Image">
-        @if (showAddToCartBox) {
-            <div class="cursor-pointer absolute bottom-0 left-0 w-full bg-white text-center p-2 opacity-90">
-                <span class="">ADD TO CART</span>
-            </div>
-            }
-     </div>
+  <div class="relative" (click)="addToCart()">
+    <img class="w-auto h-40 object-cover object-center" src="{{image}}" alt="Card Image">
+    @if (showAddToCartBox) {
+      <div class="cursor-pointer absolute bottom-0 left-0 bg-white text-center p-2 opacity-90">
+        <span class="">ADD TO CART</span>
+      </div>
+    }
+  </div>
   <div class="p-4">
     <p class="text-gray-500 font-bold">{{ category }}</p>
     <h2 class="font-bold">{{ name }}</h2>
