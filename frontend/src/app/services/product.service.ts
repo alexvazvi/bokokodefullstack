@@ -11,11 +11,11 @@ export class ProductService {
   
   constructor(private http: HttpClient) {}
 
-  getProducts(category?: string, orderByParam?: string, orderByDirection?: string): Observable<Product[]> {
+  getProducts(categories?: any, orderByParam?: string, orderByDirection?: string): Observable<Product[]> {
     let params = new HttpParams();
 
-    if (category){
-      params = params.set('category', category);
+    if (categories){
+      params = params.set('category', categories);
     }
     
     if (orderByParam)

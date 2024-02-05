@@ -14,7 +14,19 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrl: './products-list.component.scss'
 })
 export class ProductsListComponent implements OnInit {
+  categories = [
+    { name: 'People', id: 'People', checked: false },
+    { name: 'Premium', id: 'Premium', checked: false },
+    { name: 'Pets', id: 'Pets', checked: false },
+    { name: 'Food', id: 'Food', checked: false },    
+    { name: 'Landmarks', id: 'Landmarks', checked: false },
+    { name: 'Cities', id: 'Cities', checked: false },
+    { name: 'Nature', id: 'Nature', checked: false },
+
+  ];
+
   products: Product[] = [];
+
 
   constructor(private productService: ProductService) {}
 
@@ -22,8 +34,19 @@ export class ProductsListComponent implements OnInit {
     this.loadProducts();
   }
 
-  loadProducts(category?: string, orderByParam?: string, orderByDirection?: string) {
-    this.productService.getProducts(category, orderByParam, orderByDirection).subscribe((data) => {
+  toggleCategories(category?: string){
+    const selectedCategory = this.categories.find(cat => cat.name === category);
+    if (selectedCategory) 
+      selectedCategory.checked = !selectedCategory.checked;
+    this.loadProducts();
+  }
+
+  loadProducts() {
+   
+    //Lista de categorias, por nombre, solo las checkeadas
+    const categoriesToFilter = this.categories.filter(cat => cat.checked).map(cat => cat.name).join(',');
+
+    this.productService.getProducts(categoriesToFilter).subscribe((data) => {
       this.products = data;
     });
   }
