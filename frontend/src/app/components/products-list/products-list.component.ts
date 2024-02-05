@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
   styleUrl: './products-list.component.scss'
 })
 export class ProductsListComponent implements OnInit {
-  categories = [
+ categories = [
     { name: 'People', id: 'People', checked: false },
     { name: 'Premium', id: 'Premium', checked: false },
     { name: 'Pets', id: 'Pets', checked: false },
@@ -25,7 +25,11 @@ export class ProductsListComponent implements OnInit {
 
   ];
 
+  orderByValues: string[] = ['price', 'name', 'category'];
+
+
   products: Product[] = [];
+  orderBy: string = '';
 
 
   constructor(private productService: ProductService) {}
@@ -46,10 +50,14 @@ export class ProductsListComponent implements OnInit {
     //Lista de categorias, por nombre, solo las checkeadas
     const categoriesToFilter = this.categories.filter(cat => cat.checked).map(cat => cat.name).join(',');
 
-    this.productService.getProducts(categoriesToFilter).subscribe((data) => {
+    this.productService.getProducts(categoriesToFilter, this.orderBy).subscribe((data) => {
       //Coger desde el segundo elemento del array
       this.products = data.slice(1);
     });
+  }
+  onOrderByChange(event: any) {
+    this.orderBy = event.target.value;
+    this.loadProducts();
   }
 
 

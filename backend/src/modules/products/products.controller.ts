@@ -7,7 +7,7 @@ export class ProductsController {
     constructor(private productService: ProductsService) {}
     
     @Get()
-    async getAllProducts(@Query('category') category?: string, @Query('orderBy') orderBy?: string) {
+    async getAllProducts(@Query('category') category?: string, @Query('orderByParam') orderBy?: string) {
         return this.productService.getAllProducts(category, orderBy);
       }
 
