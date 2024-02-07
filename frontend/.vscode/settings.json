@@ -1,3 +1,23 @@
 {
-    "scss.lint.unknownAtRules": "ignore"
+    "scss.lint.unknownAtRules": "ignore",
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#d9d2de",
+      "activityBar.background": "#d9d2de",
+      "activityBar.foreground": "#15202b",
+      "activityBar.inactiveForeground": "#15202b99",
+      "activityBarBadge.background": "#a1927e",
+      "activityBarBadge.foreground": "#15202b",
+      "commandCenter.border": "#15202b99",
+      "sash.hoverBorder": "#d9d2de",
+      "statusBar.background": "#c1b4c9",
+      "statusBar.foreground": "#15202b",
+      "statusBarItem.hoverBackground": "#a896b4",
+      "statusBarItem.remoteBackground": "#c1b4c9",
+      "statusBarItem.remoteForeground": "#15202b",
+      "titleBar.activeBackground": "#c1b4c9",
+      "titleBar.activeForeground": "#15202b",
+      "titleBar.inactiveBackground": "#c1b4c999",
+      "titleBar.inactiveForeground": "#15202b99"
+    },
+    "peacock.color": "#c1b4c9"
   }

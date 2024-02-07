@@ -29,7 +29,7 @@ export class CardComponent {
       bestseller: false,
       featured: false,
       description: '',
-      image: '',
+      image: this.image,
     };
     this.cartService.addToCart(product);
   }
