@@ -1,23 +1,60 @@
 <div class="max-w-4xl mx-auto p-4 relative">
   <div class="flex items-center justify-between mb-14">
-    <h2 class="text-3xl font-bold">
+    <h2 class="text-xl md:text-3xl font-bold">
       Photography /
       <span class="text-gray-400 font-normal">Premium Photos</span>
     </h2>
+    @if (getScreenWidth > 414) {
+
     <div class="flex items-center">
       <span>⇅</span>
       <span class="text-gray-400 ml-1 mr-2"> Sort By </span>
-    <select (change)="onOrderByChange($event)">
+      <select (change)="onOrderByChange($event)">
         @for(val of orderByValues; track val) {
         <option [value]="val">{{ val }}</option>
         }
       </select>
-      
     </div>
+  } @else {
+    <div class="flex items-center cursor-pointer" (click)="openCategoriesSmall()">
+      <img class="w-6 h-6" src="assets/filter-6540.svg" />
+      @if (showCategories) {
+        <div class="fixed inset-0 z-50 flex justify-center items-center bg-gray-800 bg-opacity-80">
+          <div class=" px-4 bg-white">
+            <input type="text" />
+            <h3 class="font-bold mb-4 text-2xl font-bold">Filter</h3>
+            @for (category of categories; track category) {
+            <div class="mb-4">
+              <input
+                type="checkbox"
+                [name]="category.name"
+                [id]="category.id"
+              />
+              <label class="ml-3">{{ category.name }}</label>
+            </div>
+            }
+          </div>
+          <button
+        class="bg-white py-1.5 font-medium text-black border-2 border-black disabled:opacity-40"
+      >
+      
+        Clear
+      </button>
+      <button
+        class="bg-black py-1.5 font-medium text-white border-2 border-black disabled:opacity-40"
+      >
+        Save
+      </button>
+        </div>
+        
+      }
+      </div>
+  }
   </div>
+  @if (getScreenWidth > 414) {
   <div class="grid grid-cols-2 gap-4">
     <div>
-      <input type="text">
+      <input type="text" />
       <h3 class="font-bold mb-4">Category</h3>
       @for (category of categories; track category) {
       <div class="mb-4">
@@ -43,4 +80,5 @@
       }
     </div>
   </div>
+  }
 </div>

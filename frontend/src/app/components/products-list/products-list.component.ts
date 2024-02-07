@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CardComponent } from '../../shared/card/card.component';
 import { CartService } from '../../services/cart.service';
 import { Product } from '../../interfaces/product';
@@ -26,16 +26,28 @@ export class ProductsListComponent implements OnInit {
   ];
 
   orderByValues: string[] = ['price', 'name', 'category'];
-
+  public getScreenWidth: any;
+  public getScreenHeight: any;
 
   products: Product[] = [];
   orderBy: string = '';
-
-
+  showCategories: boolean = false;
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
+      this.getScreenWidth = window.innerWidth;
+      this.getScreenHeight = window.innerHeight;
     this.loadProducts();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    this.getScreenWidth = window.innerWidth;
+    this.getScreenHeight = window.innerHeight;
+  }
+
+  openCategoriesSmall() {
+    this.showCategories = true;
   }
 
   toggleCategories(category?: string){
@@ -43,6 +55,10 @@ export class ProductsListComponent implements OnInit {
     if (selectedCategory) 
       selectedCategory.checked = !selectedCategory.checked;
     this.loadProducts();
+  }
+
+  toggleCategoriesSmall() {
+    this.showCategories = !this.showCategories;
   }
 
   loadProducts() {
