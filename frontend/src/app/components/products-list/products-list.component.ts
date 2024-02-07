@@ -49,6 +49,9 @@ export class ProductsListComponent implements OnInit {
   openCategoriesSmall() {
     this.showCategories = true;
   }
+  closeCategoriesSmall() {
+    this.showCategories = false;
+  }
 
   toggleCategories(category?: string){
     const selectedCategory = this.categories.find(cat => cat.name === category);
@@ -74,6 +77,17 @@ export class ProductsListComponent implements OnInit {
   onOrderByChange(event: any) {
     this.orderBy = event.target.value;
     this.loadProducts();
+  }
+
+  loadProductsCategoryPopUp(){
+    this.closeCategoriesSmall();
+    this.loadProducts();
+  }
+
+  clearCategoriesFilter(){
+    this.categories.forEach(category => {
+      category.checked = false;
+    });
   }
 
 

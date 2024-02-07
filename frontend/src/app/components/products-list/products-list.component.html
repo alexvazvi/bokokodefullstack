@@ -15,41 +15,55 @@
         }
       </select>
     </div>
-  } @else {
-    <div class="flex items-center cursor-pointer" (click)="openCategoriesSmall()">
+    } @else {
+    <div
+      class="flex items-center cursor-pointer"
+      (click)="openCategoriesSmall()"
+    >
       <img class="w-6 h-6" src="assets/filter-6540.svg" />
-      @if (showCategories) {
-        <div class="fixed inset-0 z-50 flex justify-center items-center bg-gray-800 bg-opacity-80">
-          <div class=" px-4 bg-white">
-            <input type="text" />
-            <h3 class="font-bold mb-4 text-2xl font-bold">Filter</h3>
-            @for (category of categories; track category) {
-            <div class="mb-4">
-              <input
-                type="checkbox"
-                [name]="category.name"
-                [id]="category.id"
-              />
-              <label class="ml-3">{{ category.name }}</label>
-            </div>
-            }
-          </div>
-          <button
-        class="bg-white py-1.5 font-medium text-black border-2 border-black disabled:opacity-40"
-      >
-      
-        Clear
-      </button>
-      <button
-        class="bg-black py-1.5 font-medium text-white border-2 border-black disabled:opacity-40"
-      >
-        Save
-      </button>
+    </div>
+    @if (this.showCategories) {
+    <div
+      class="fixed inset-0 z-50 flex justify-center items-center bg-gray-800 bg-opacity-80"
+    >
+      <div class="px-4 bg-white">
+        <div class="flex justify-between mb-4 items-center h-full">
+          <h3 class="font-bold text-2xl font-bold">Filter</h3>
+          <span class="cursor-pointer" (click)="closeCategoriesSmall()">🗙</span>
         </div>
-        
-      }
+
+        @for (category of categories; track category) {
+        <div class="mb-4">
+          <input
+            type="checkbox"
+            [name]="category.name"
+            [id]="category.id"
+            [checked]="category.checked"
+            (click)="toggleCategories(category.name)"
+          />
+          <label class="ml-3">{{ category.name }}</label>
+        </div>
+        }
+        <hr class="my-4 border-t-2 border-gray-200" />
+
+        <div class="flex justify-between gap-2 mb-4">
+          <button
+            class="bg-white py-1.5 px-4 font-medium text-black border-2 border-black disabled:opacity-40"
+            (click)="clearCategoriesFilter()"
+          >
+            Clear
+          </button>
+          <button
+            class="bg-black py-1.5 px-4 font-medium text-white border-2 border-black disabled:opacity-40"
+            (click)="loadProductsCategoryPopUp()"
+          >
+            Save
+          </button>
+        </div>
       </div>
-  }
+    </div>
+
+    } }
   </div>
   @if (getScreenWidth > 414) {
   <div class="grid grid-cols-2 gap-4">
@@ -62,23 +76,25 @@
           type="checkbox"
           [name]="category.name"
           [id]="category.id"
+          [checked]="category.checked"
           (click)="toggleCategories(category.name)"
         />
         <label class="ml-3">{{ category.name }}</label>
       </div>
       }
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      @for (product of products; track product) {
-      <app-card
-        [name]="product.name"
-        [price]="product.price"
-        [category]="product.category"
-        [image]="product.image"
-        [bestSeller]="product.bestseller"
-      ></app-card>
-      }
-    </div>
   </div>
-  }
+
+    }
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    @for (product of products; track product) {
+    <app-card
+      [name]="product.name"
+      [price]="product.price"
+      [category]="product.category"
+      [image]="product.image"
+      [bestSeller]="product.bestseller"
+    ></app-card>
+    }
+  </div>
 </div>
