@@ -9,7 +9,7 @@
       <p class="text-sm">Photo of the day</p>
     </div>
   </div>
-  <div class="grid grid-cols-2 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
     <div>
       <h4 class="text-xl font-bold mb-2">About the {{product.name}}</h4>
       <h5 class="text-lg font-semibold mb-2">{{product.category}}</h5>
@@ -17,7 +17,7 @@
         {{product.description}}
       </p>
     </div>
-    <div>
+    <div class="md:flex md:flex-col md:justify-center">
       <h4 class="text-xl font-bold mb-2">People also buy</h4>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <app-card
@@ -31,17 +31,15 @@
           [price]="39.99"
           [category]="'Food'"
           [image]="product.image"
-
         ></app-card>
         <app-card
           [name]="'Solomillo 3'"
           [price]="49.99"
           [category]="'Food'"
           [image]="product.image"
-
         ></app-card>
       </div>
     </div>
-    <div></div>
   </div>
+  >
 </div>

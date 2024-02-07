@@ -30,12 +30,12 @@
 </header>
 
 @if (!cartIsHidden) {
-  <div class="fixed top-1/16 right-1/8 z-50 bg-white border-2 p-6 w-80">
+  <div class="fixed top-1/16 right-1/8 z-50 bg-white border-2 p-4 w-80">
     <div
-    class="cursor-pointer text-right font-bold mr-2"
+    class="cursor-pointer text-right font-bold mr-2 mb-2"
     (click)="toggleVisibilityCart()"
-  >
-    X
+    >
+    <span>🗙</span>
   </div>
   <div class="mb-2">
     @if (cart.length === 0){
