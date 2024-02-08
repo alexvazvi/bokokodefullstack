@@ -1,11 +1,11 @@
-<div class="border overflow-hidden card-container relative" 
+<div class="border h-full w-full flex flex-col justify-between" 
      (mouseenter)="showAddToCartBox = true" 
      (mouseleave)="showAddToCartBox = false">
-  <div class="relative h-auto lg:h-40" (click)="addToCart()">
-    <img class="w-auto  object-cover object-center" src="{{image}}" alt="Card Image">
+  <div class="relative " (click)="addToCart()">
+    <img class="object-cover object-center" src="{{image}}" alt="Card Image">
     @if (bestSeller) {
-    <div class="absolute top-0 left-0 bg-white text-center text-black">
-      <p class="text-sm">Best Seller</p>
+    <div class="absolute top-0 left-0 px-1 bg-white text-center text-black">
+      <p class="text-xs">Best Seller</p>
     </div>
   }
     @if (showAddToCartBox) {
@@ -14,7 +14,7 @@
       </div>
     }
   </div>
-  <div class="p-4">
+  <div class="p-4 jus">
     <p class="text-gray-500 font-bold">{{ category }}</p>
     <h2 class="font-bold">{{ name }}</h2>
     <p class="text-gray-500">${{ price.toFixed(2) }}</p>
