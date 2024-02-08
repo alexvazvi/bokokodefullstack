@@ -1,8 +1,8 @@
 <div class="border overflow-hidden card-container relative" 
      (mouseenter)="showAddToCartBox = true" 
      (mouseleave)="showAddToCartBox = false">
-  <div class="relative" (click)="addToCart()">
-    <img class="w-auto h-40 object-cover object-center" src="{{image}}" alt="Card Image">
+  <div class="relative h-auto lg:h-40" (click)="addToCart()">
+    <img class="w-auto  object-cover object-center" src="{{image}}" alt="Card Image">
     @if (bestSeller) {
     <div class="absolute top-0 left-0 bg-white text-center text-black">
       <p class="text-sm">Best Seller</p>
