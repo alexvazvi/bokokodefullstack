@@ -11,27 +11,26 @@ import { TitleCasePipe } from '@angular/common';
   standalone: true,
   imports: [CardComponent, TitleCasePipe],
   templateUrl: './products-list.component.html',
-  styleUrl: './products-list.component.scss'
+  styleUrl: './products-list.component.scss',
 })
 export class ProductsListComponent implements OnInit {
- categories = [
+  categories = [
     { name: 'people', id: 'people', checked: false },
     { name: 'premium', id: 'premium', checked: false },
     { name: 'pets', id: 'pets', checked: false },
-    { name: 'food', id: 'food', checked: false },    
+    { name: 'food', id: 'food', checked: false },
     { name: 'landmarks', id: 'landmarks', checked: false },
     { name: 'cities', id: 'cities', checked: false },
     { name: 'nature', id: 'nature', checked: false },
-
   ];
 
   orderByValues: string[] = ['price', 'name', 'category'];
   public getScreenWidth: any;
   public getScreenHeight: any;
-
   products: Product[] = [];
   orderBy: string = '';
   showCategories: boolean = false;
+
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
@@ -55,43 +54,47 @@ export class ProductsListComponent implements OnInit {
     this.showCategories = false;
   }
 
-  toggleCategories(category?: string){
-    const selectedCategory = this.categories.find(cat => cat.name === category);
-    if (selectedCategory) 
-      selectedCategory.checked = !selectedCategory.checked;
+  toggleCategories(category?: string) {
+    const selectedCategory = this.categories.find(
+      (cat) => cat.name === category
+    );
+    if (selectedCategory) selectedCategory.checked = !selectedCategory.checked;
     this.loadProducts();
   }
 
-  toggleCategoriesSmall() {
-    this.showCategories = !this.showCategories;
-  }
+  // toggleCategoriesSmall() {
+  //   this.showCategories = !this.showCategories;
+  // }
 
   loadProducts() {
-   
     //Lista de categorias, por nombre, solo las checkeadas
-    const categoriesToFilter = this.categories.filter(cat => cat.checked).map(cat => cat.name).join(',');
+    const categoriesToFilter = this.categories
+      .filter((cat) => cat.checked)
+      .map((cat) => cat.name)
+      .join(',');
 
-    this.productService.getProducts(categoriesToFilter, this.orderBy).subscribe((data) => {
-      //Coger desde el elemento del array sin featured, al ordenar cambiará no estará al principio.
-      this.products = data.filter(product => !product.featured);
-    });
+    this.productService
+      .getProducts(categoriesToFilter, this.orderBy)
+      .subscribe((data) => {
+        //Coger desde el elemento del array sin featured, al ordenar cambiará no estará al principio.
+        this.products = data.filter((product) => !product.featured);
+      });
   }
+
   onOrderByChange(event: any) {
     this.orderBy = event.target.value;
     this.loadProducts();
   }
 
-  loadProductsCategoryPopUp(){
+  loadProductsCategoryPopUp() {
     this.closeCategoriesSmall();
     this.loadProducts();
   }
 
-  clearCategoriesFilter(){
-    this.categories.forEach(category => {
+  clearCategoriesFilter() {
+    this.categories.forEach((category) => {
       category.checked = false;
     });
+    this.loadProducts();
   }
-
-
 }
-
