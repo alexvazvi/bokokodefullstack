@@ -65,8 +65,8 @@
 
     } }
   </div>
-  @if (getScreenWidth > 414) {
-  <div class="grid grid-cols-2 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    @if (getScreenWidth > 414) {
     <div>
       <input type="text" />
       <h3 class="font-bold mb-4">Category</h3>
@@ -83,18 +83,18 @@
       </div>
       }
     </div>
-  </div>
+  }
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      @for (product of products; track product) {
+      <app-card
+        [name]="product.name"
+        [price]="product.price"
+        [category]="product.category"
+        [image]="product.image"
+        [bestSeller]="product.bestseller"
+      ></app-card>
+      }
+    </div>
 
-    }
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    @for (product of products; track product) {
-    <app-card
-      [name]="product.name"
-      [price]="product.price"
-      [category]="product.category"
-      [image]="product.image"
-      [bestSeller]="product.bestseller"
-    ></app-card>
-    }
   </div>
 </div>
