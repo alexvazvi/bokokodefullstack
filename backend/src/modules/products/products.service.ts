@@ -12,7 +12,7 @@ export class ProductsService {
 
   getAllProducts(category?: string, orderBy?: string): Promise<Product[]> {
     return this.prismaService.product.findMany({
-      where: category ? { category: { in: this.categoryType } } : {},
+      where: category ? { category: category } : {},
       orderBy: orderBy && this.OrderByValues.includes(orderBy) ? { [orderBy]: 'asc' } : {},
     });
   }

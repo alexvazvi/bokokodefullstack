@@ -41,7 +41,7 @@
             [checked]="category.checked"
             (click)="toggleCategories(category.name)"
           />
-          <label class="ml-3">{{ category.name }}</label>
+          <label class="ml-3">{{ category.name | titlecase }}</label>
         </div>
         }
         <hr class="my-4 border-t-2 border-gray-200" />
@@ -79,7 +79,7 @@
           [checked]="category.checked"
           (click)="toggleCategories(category.name)"
         />
-        <label class="ml-3">{{ category.name }}</label>
+        <label class="ml-3">{{ category.name | titlecase}}</label>
       </div>
       }
     </div>

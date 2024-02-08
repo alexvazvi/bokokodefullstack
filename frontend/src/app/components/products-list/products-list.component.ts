@@ -5,23 +5,23 @@ import { Product } from '../../interfaces/product';
 import { ProductService } from '../../services/product.service';
 import { firstValueFrom } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
-
+import { TitleCasePipe } from '@angular/common';
 @Component({
   selector: 'app-products-list',
   standalone: true,
-  imports: [CardComponent],
+  imports: [CardComponent, TitleCasePipe],
   templateUrl: './products-list.component.html',
   styleUrl: './products-list.component.scss'
 })
 export class ProductsListComponent implements OnInit {
  categories = [
-    { name: 'People', id: 'People', checked: false },
-    { name: 'Premium', id: 'Premium', checked: false },
-    { name: 'Pets', id: 'Pets', checked: false },
-    { name: 'Food', id: 'Food', checked: false },    
-    { name: 'Landmarks', id: 'Landmarks', checked: false },
-    { name: 'Cities', id: 'Cities', checked: false },
-    { name: 'Nature', id: 'Nature', checked: false },
+    { name: 'people', id: 'people', checked: false },
+    { name: 'premium', id: 'premium', checked: false },
+    { name: 'pets', id: 'pets', checked: false },
+    { name: 'food', id: 'food', checked: false },    
+    { name: 'landmarks', id: 'landmarks', checked: false },
+    { name: 'cities', id: 'cities', checked: false },
+    { name: 'nature', id: 'nature', checked: false },
 
   ];
 
