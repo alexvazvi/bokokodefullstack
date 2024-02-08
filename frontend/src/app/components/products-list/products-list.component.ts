@@ -6,10 +6,11 @@ import { ProductService } from '../../services/product.service';
 import { firstValueFrom } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 import { TitleCasePipe } from '@angular/common';
+import { PaginatorComponent } from '../../shared/paginator/paginator.component';
 @Component({
   selector: 'app-products-list',
   standalone: true,
-  imports: [CardComponent, TitleCasePipe],
+  imports: [CardComponent, TitleCasePipe, PaginatorComponent],
   templateUrl: './products-list.component.html',
   styleUrl: './products-list.component.scss',
 })
@@ -76,7 +77,7 @@ export class ProductsListComponent implements OnInit {
     this.productService
       .getProducts(categoriesToFilter, this.orderBy)
       .subscribe((data) => {
-        //Coger desde el elemento del array sin featured, al ordenar cambiará no estará al principio.
+        //Coger elementos del array sin featured, al ordenar cambiará no estará al principio, a menos que se mande desde el back, mejora.
         this.products = data.filter((product) => !product.featured);
       });
   }

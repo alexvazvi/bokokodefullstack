@@ -4,7 +4,7 @@
       Photography /
       <span class="text-gray-400 font-normal">Premium Photos</span>
     </h2>
-    @if (getScreenWidth > 414) {
+    @if (getScreenWidth > 768) {
 
     <div class="flex items-center">
       <span>⇅</span>
@@ -66,7 +66,7 @@
     } }
   </div>
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    @if (getScreenWidth > 414) {
+    @if (getScreenWidth > 768) {
     <div>
       <input type="text" />
       <h3 class="font-bold mb-4">Category</h3>
@@ -79,22 +79,25 @@
           [checked]="category.checked"
           (click)="toggleCategories(category.name)"
         />
-        <label class="ml-3">{{ category.name | titlecase}}</label>
+        <label class="ml-3">{{ category.name | titlecase }}</label>
       </div>
       }
     </div>
-  }
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      @for (product of products; track product) {
-      <app-card
-        [name]="product.name"
-        [price]="product.price"
-        [category]="product.category"
-        [image]="product.image"
-        [bestSeller]="product.bestseller"
-      ></app-card>
-      }
-    </div>
+    }
+    <div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        @for (product of products; track product) {
+        <app-card
+          [name]="product.name"
+          [price]="product.price"
+          [category]="product.category"
+          [image]="product.image"
+          [bestSeller]="product.bestseller"
+        ></app-card>
+        }
+      </div>
+      <app-paginator></app-paginator>
 
+    </div>
   </div>
 </div>
