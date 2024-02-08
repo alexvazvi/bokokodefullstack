@@ -72,8 +72,8 @@ export class ProductsListComponent implements OnInit {
     const categoriesToFilter = this.categories.filter(cat => cat.checked).map(cat => cat.name).join(',');
 
     this.productService.getProducts(categoriesToFilter, this.orderBy).subscribe((data) => {
-      //Coger desde el segundo elemento del array
-      this.products = data.slice(1);
+      //Coger desde el elemento del array sin featured, al ordenar cambiará no estará al principio.
+      this.products = data.filter(product => !product.featured);
     });
   }
   onOrderByChange(event: any) {
