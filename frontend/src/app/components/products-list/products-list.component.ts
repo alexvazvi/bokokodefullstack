@@ -35,8 +35,10 @@ export class ProductsListComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
+    if (typeof window !== 'undefined') {
       this.getScreenWidth = window.innerWidth;
       this.getScreenHeight = window.innerHeight;
+    }
     this.loadProducts();
   }
 
