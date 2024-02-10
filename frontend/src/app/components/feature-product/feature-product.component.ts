@@ -39,11 +39,11 @@ export class FeatureProductComponent {
   loadProducts() {
     this.productService.getProducts().subscribe((data) => {
       // Coger el primer elemento del array
-      if (data.length > 0) {
-        this.product = data.find(product => !product.featured) ?? this.product;
+      if (data.totalCount && data.totalCount > 0) {
+        this.product = data.products.find(product => !product.featured) ?? this.product;
         if (!this.product) {
           //Si no hay producto featured, poner el primero, para que no esté vacio.
-          this.product = data[0];
+          this.product = data.products[0];
         }
       }
     });

@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from '../interfaces/product';
+import { ProductsResponse } from '../interfaces/productResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ProductService {
   
   constructor(private http: HttpClient) {}
 
-  getProducts(categories?: any, orderByParam?: string, orderByDirection?: string): Observable<Product[]> {
+  getProducts(categories?: string, orderByParam?: string, orderByDirection?: string, actualPage?: number): Observable<ProductsResponse> {
     let params = new HttpParams();
 
     if (categories){
@@ -21,9 +22,12 @@ export class ProductService {
     if (orderByParam)
       params = params.set('orderByParam', orderByParam);
 
-      if (orderByDirection)
+    if (orderByDirection)
       params = params.set('orderByDirection', orderByDirection);
 
-      return this.http.get<Product[]>(this.urlProducts, { params });
+    if (actualPage)
+      params = params.set('page', actualPage.toString());
+
+      return this.http.get<ProductsResponse>(this.urlProducts, { params });
     }
 }
