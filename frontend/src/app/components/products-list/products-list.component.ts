@@ -7,6 +7,7 @@ import { firstValueFrom } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 import { TitleCasePipe } from '@angular/common';
 import { PaginatorComponent } from '../../shared/paginator/paginator.component';
+import { PaginationService } from '../../services/paginator.service';
 @Component({
   selector: 'app-products-list',
   standalone: true,
@@ -32,14 +33,19 @@ export class ProductsListComponent implements OnInit {
   orderBy: string = '';
   showCategories: boolean = false;
 
-  constructor(private productService: ProductService) {}
+  private currentPage: number = 1;
+  private itemsPerPage: number = 6;
+
+  constructor(private productService: ProductService, private paginationService: PaginationService) {}
 
   ngOnInit() {
     if (typeof window !== 'undefined') {
       this.getScreenWidth = window.innerWidth;
       this.getScreenHeight = window.innerHeight;
     }
-    this.loadProducts();
+    this.paginationService.currentPage.subscribe(page => this.currentPage = page);
+    this.paginationService.itemsPerPage.subscribe(items => this.itemsPerPage = items);
+    this.loadProducts();  
   }
 
   @HostListener('window:resize', ['$event'])
@@ -75,7 +81,7 @@ export class ProductsListComponent implements OnInit {
       .join(',');
 
     this.productService
-      .getProducts(categoriesToFilter, this.orderBy, 'asc', 1, 6)
+      .getProducts(categoriesToFilter, this.orderBy, 'asc', this.currentPage, this.itemsPerPage)
       .subscribe((data) => {
         //Coger elementos del array sin featured, al ordenar cambiará no estará al principio, a menos que se mande desde el back, mejora.
         this.products = data.products.filter((product) => !product.featured);
