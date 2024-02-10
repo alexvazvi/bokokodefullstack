@@ -12,7 +12,7 @@ export class ProductService {
   
   constructor(private http: HttpClient) {}
 
-  getProducts(categories?: string, orderByParam?: string, orderByDirection?: string, actualPage?: number): Observable<ProductsResponse> {
+  getProducts(categories?: string, orderByParam?: string, orderByDirection?: string, actualPage?: number, itemsPerPage?: number): Observable<ProductsResponse> {
     let params = new HttpParams();
 
     if (categories){
@@ -20,13 +20,16 @@ export class ProductService {
     }
     
     if (orderByParam)
-      params = params.set('orderByParam', orderByParam);
+      params = params.set('orderBy', orderByParam);
 
     if (orderByDirection)
       params = params.set('orderByDirection', orderByDirection);
 
     if (actualPage)
       params = params.set('page', actualPage.toString());
+
+    if(itemsPerPage)
+      params = params.set('itemsPerPage', itemsPerPage.toString());
 
       return this.http.get<ProductsResponse>(this.urlProducts, { params });
     }

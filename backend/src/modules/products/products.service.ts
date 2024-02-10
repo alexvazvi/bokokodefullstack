@@ -20,28 +20,38 @@ export class ProductsService {
   async getAllProducts(
     category?: string,
     orderBy?: string,
+    orderByDirection?: string,
     page?: number,
     itemsPerPage?: number,
-
-  ): Promise<{products: Product[], totalCount: number, actualPage: number, totalPages: number, itemsPerPage:number}> {
-
+  ): Promise<{
+    products: Product[];
+    totalCount: number;
+    actualPage: number;
+    totalPages: number;
+    itemsPerPage: number;
+  }> {
     // Para el paginador
     const totalCount = await this.prismaService.product.count({
       where: category ? { category: category } : {},
-     });
+    });
 
-    const totalPages = Math.ceil(totalCount / itemsPerPage);
-    const actualPage = page ? page : 1; 
-    const skip = (actualPage - 1) * itemsPerPage;
+    const totalPages = Math.ceil(totalCount / itemsPerPage );
+    const actualPage = page ? page : 1;
+    const skip = (actualPage - 1) * itemsPerPage ;
 
     const products = await this.prismaService.product.findMany({
       where: category ? { category: category } : {},
-      orderBy: orderBy && this.OrderByValues.includes(orderBy) ? { [orderBy]: 'asc' } : {},
+      orderBy:
+        (orderBy && this.OrderByValues.includes(orderBy))
+          ? {
+              [orderBy]: 'asc',
+            }
+          : {},
       skip: skip,
       take: itemsPerPage,
     });
 
-    return {products, totalCount, actualPage, totalPages, itemsPerPage};
+    return { products, totalCount, actualPage, totalPages, itemsPerPage };
   }
 
   async getProductById(id: number): Promise<Product> {

@@ -75,7 +75,7 @@ export class ProductsListComponent implements OnInit {
       .join(',');
 
     this.productService
-      .getProducts(categoriesToFilter, this.orderBy)
+      .getProducts(categoriesToFilter, this.orderBy, 'asc', 1, 6)
       .subscribe((data) => {
         //Coger elementos del array sin featured, al ordenar cambiará no estará al principio, a menos que se mande desde el back, mejora.
         this.products = data.products.filter((product) => !product.featured);
