@@ -43,8 +43,14 @@ export class ProductsListComponent implements OnInit {
       this.getScreenWidth = window.innerWidth;
       this.getScreenHeight = window.innerHeight;
     }
-    this.paginationService.currentPage.subscribe(page => this.currentPage = page);
-    this.paginationService.itemsPerPage.subscribe(items => this.itemsPerPage = items);
+    this.paginationService.currentPage.subscribe(page => {
+      this.currentPage = page;
+      this.loadProducts();
+    });
+    this.paginationService.itemsPerPage.subscribe(items => {
+      this.itemsPerPage = items;
+      this.loadProducts();
+    });
     this.loadProducts();  
   }
 
