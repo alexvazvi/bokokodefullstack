@@ -7,8 +7,8 @@ export class ProductsController {
     constructor(private productService: ProductsService) {}
     
     @Get()
-    getAllProducts(@Query('category') category?: string, @Query('orderByParam') orderBy?: string, @Query('page') page?: number) {
-        return this.productService.getAllProducts(category, orderBy, page);
+    getAllProducts(@Query('category') category?: string, @Query('orderByParam') orderBy?: string, @Query('page') page?: number, @Query('itemsPerPage') itemsPerPage?: number)    {
+        return this.productService.getAllProducts(category, orderBy, page, itemsPerPage);
       }
 
     @Get(':id')
