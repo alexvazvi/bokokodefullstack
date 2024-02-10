@@ -1,9 +1,9 @@
 <div class="flex justify-center items-center mt-8">
     <button class="px-4 py-2 font-bold"><</button>
     <div class="flex flex-row">
-      <button class="px-4 py-2 font-bold">1</button>
-      <button class="px-4 py-2 text-gray-500">2</button>
-      <button class="px-4 py-2 text-gray-500">3</button>
+      <button class="px-4 py-2 font-bold" (click)="changePage(1)">1</button>
+    <button class="px-4 py-2 text-gray-500" (click)="changePage(2)">2</button>
+    <button class="px-4 py-2 text-gray-500" (click)="changePage(3)">3</button>
     </div>
     <button class="px-4 py-2 font-bold">></button>
   </div>

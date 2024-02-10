@@ -36,7 +36,7 @@ export class ProductsService {
     });
 
     const totalPages = Math.ceil(totalCount / itemsPerPage );
-    const actualPage = page ? page : 1;
+    const actualPage = page;
     const skip = (actualPage - 1) * itemsPerPage ;
 
     const products = await this.prismaService.product.findMany({
